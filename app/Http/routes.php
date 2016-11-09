@@ -13,8 +13,10 @@
 // Get the contact page run code in controller
 
 Route::get('contact', 'PagesController@getContact');
-
 Route::get('about', 'PagesController@getAbout');
-
 Route::get('/', 'PagesController@getIndex');
+
+// Connects to post controller
+Route::resource('posts', 'PostController');
+
 
