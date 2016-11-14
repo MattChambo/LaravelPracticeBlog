@@ -10,7 +10,7 @@
 
 
     <div class="container">
-
+      @include('partials._messages')
      <!--  You insert content that is different on different pages into this area -->
       @yield('content')
 
