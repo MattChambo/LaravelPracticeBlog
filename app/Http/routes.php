@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-// Get the contact page run code in controller
+// Get the contact page, run code in controller
 
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
