@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+// Pretty sure App\Post namespaces in the model
 use App\Post;
  // Session is namespaced here
 use Session;
@@ -91,7 +92,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        // find the post in the database and save as a variable
+        $post = Post::find($id);
+        // Return the view and pass in the var we previously created
+        return view('posts.edit')->withPost($post);
     }
 
     /**
