@@ -107,7 +107,28 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validate the data
+        $this->validate($request, array(
+            // The title field must be filled in and cannot be more than 255 characters
+            // The body field must be filled in too to pass validation
+                'title' => 'required|max:255',
+                'body' => 'required'
+            ));
+        // Save the data to the database
+        // Find the existing item we want to update
+        $post = Post::find($id);
+
+        // Change old data to the data in the form
+        // Input gets content from either post or get perameters
+        $post->title = $request->input('title'); 
+        $post->body = $request->input('body');
+
+        $post->save();
+        // set flash data with success message
+        Session::flash('success', 'This post was successfully saved.');
+
+        // redirect with flash data to posts.show
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -118,6 +139,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        Session::flash('success', 'The post was successfully deleted');
+        return redirect()->route('posts.index');
     }
 }

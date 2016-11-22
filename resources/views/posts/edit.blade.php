@@ -5,8 +5,8 @@
 @section('content')
 
 	<div class="row">
-		{{-- Opens the form binds the model to the form. Adds post object from $post. Get form helpers from video 11, doesn't work without them. 'route' goes to post update plus the id of the post. Route contains an array within an array --}}
-		{!! Form::model($post, ['route' => ['posts.update', $post->id]]) !!}
+		{{-- Opens the form binds the model to the form. Adds post object from $post. Get form helpers from video 11, doesn't work without them. 'route' goes to post update plus the id of the post. Route contains an array within an array. You have to tell the form binder what method to use. --}}
+		{!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
 		<div class="col-md-8">
 			
 			{{ Form::label('title', 'Title:') }}
@@ -35,7 +35,7 @@
 						{{-- <a href="#" class="btn btn-primary btn-block">Edit</a> --}}
 					</div>
 					<div class="col-sm-6">
-						{!! Html::linkRoute('posts.update', 'Save Changes', array($post->id), array('class' =>'btn btn-success btn-block')) !!}
+						{{ Form::submit('Save Changes', ['class' => 'btn btn-success btn-block'])}}
 					</div>
 				</div>
 			</div>
