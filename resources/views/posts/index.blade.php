@@ -44,6 +44,10 @@
 
 				</tbody>
 			</table>
+			<div class="text-center">
+				{{-- call post object use links from pagination in post controller --}}
+				{!! $posts->links(); !!}
+			</div>
 		</div>
 	</div>
 

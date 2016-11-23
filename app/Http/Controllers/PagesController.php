@@ -3,10 +3,16 @@
 // Must be done for each controller
 namespace App\Http\Controllers;
 
+use App\Post;
+
 class PagesController extends Controller {
 
 // Gets home page
 	public function getIndex() {
+
+		// Post:: assumes select(*) was inserted if you don't write anything else first
+		// Saves the most recent four items in created at descending order
+		$posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
 		// This is what normally happens within these kinds of functions
 		// process variable data or params
 		// talk to the model
@@ -14,7 +20,7 @@ class PagesController extends Controller {
 		// compile or process data from the model if needed
 		// pass that data to the correct view
 
-		 return view('pages.welcome');
+		 return view('pages.welcome')->withPosts($posts);
 	}
 // Get about page
 	public function getAbout() {
