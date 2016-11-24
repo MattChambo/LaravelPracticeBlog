@@ -21,6 +21,11 @@
     			{{ Form::label('title', 'Title:') }}
     			{{-- Form control is a bootstrap class that makes forms look pretty. Second parameter null is the default value that appears in the field, doesn't have to be null but if the field is going to be blank you have to put null --}}
     			{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
+
+    			{{-- The 'slug' must match the column name in the database and it must match the label--}}
+    			{{ Form::label('slug', 'Slug:') }}
+    			{{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}
+
     			{{ Form::label('body', "Post Body:")}}
     			{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => ''))}}
 

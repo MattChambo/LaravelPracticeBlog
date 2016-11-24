@@ -51,6 +51,8 @@ class PostController extends Controller
             // The title field must be filled in and cannot be more than 255 characters
             // The body field must be filled in too to pass validation
                 'title' => 'required|max:255',
+                // alpha_dash ensures that a slug can only be alphanumeric charaters and dashes
+                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'body' => 'required'
             ));
 
@@ -60,6 +62,7 @@ class PostController extends Controller
 
         // Gets data from form
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
 
         // saves data in the database
@@ -113,6 +116,10 @@ class PostController extends Controller
             // The title field must be filled in and cannot be more than 255 characters
             // The body field must be filled in too to pass validation
                 'title' => 'required|max:255',
+                // slug is require for validation to mass slugs can only be alpha numeric
+                // characters or dashes the slug must be at least 5 charcters long and no longer
+                // than 255 each slug must be unique
+                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'body' => 'required'
             ));
         // Save the data to the database
@@ -121,7 +128,8 @@ class PostController extends Controller
 
         // Change old data to the data in the form
         // Input gets content from either post or get perameters
-        $post->title = $request->input('title'); 
+        $post->title = $request->input('title');
+        $post->slug = $request->input('slug'); 
         $post->body = $request->input('body');
 
         $post->save();

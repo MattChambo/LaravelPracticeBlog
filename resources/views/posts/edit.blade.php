@@ -12,6 +12,9 @@
 			{{ Form::label('title', 'Title:') }}
 			{{-- The bit in '' must match a column in the database. null stops the code from overiding laravel default behaviour --}}
 			{{ Form::text('title', null, ["class" => 'form-control input-lg']) }}
+
+			{{ Form::label('slug', 'Slug:', ['class' => 'form-spacing-top'])}}
+			{{ Form::text('slug', null, ['class' => 'form-control']) }}
 			
 			{{ Form::label('body', "Body:", ['class' => 'form-spacing-top']) }}
 			{{ Form::textarea('body', null, ['class' => 'form-control']) }}
