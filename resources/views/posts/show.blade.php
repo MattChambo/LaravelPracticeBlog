@@ -15,8 +15,8 @@
 			<div class="well">
 				<dl class="dl-horizontal">
 					<label>Url:</label>
-					{{-- Adds slug to page from post variable --}}
-					<p><a href="{{ url($post->slug) }}">{{ url($post->slug) }}</a></p>
+					{{-- Adds slug to page from post variable after the named route we created --}}
+					<p><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></p>
 				</dl>
 
 				<dl class="dl-horizontal">

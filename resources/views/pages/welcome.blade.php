@@ -24,7 +24,7 @@
               <h3>{{ $post->title }}</h3>
               {{-- Gets body of post from database, substr truncates post starting at first character of post 0 and ending at the 300th character. Second strlen is checking if the body of the post is more than 300 characters and adding an elipsis if it is longer than 300 or nothing if it is less than 300 --}}
               <p>{{ substr($post->body, 0, 300) }}{{ strlen($post->body) > 300 ? "..." : "" }}</p>
-              <a href="#" class="btn btn-primary">Read More</a>
+              <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-primary">Read More</a>
             </div>
 
           @endforeach

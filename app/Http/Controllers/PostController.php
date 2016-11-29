@@ -112,6 +112,13 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         // Validate the data
+        $post = Post::find($id);
+        if ($request->input('slug') == $post->slug) {
+            $this->validate($request, array(
+                'title' => 'required|max:255',
+                'body' => 'required'
+             ));
+        } else {
         $this->validate($request, array(
             // The title field must be filled in and cannot be more than 255 characters
             // The body field must be filled in too to pass validation
@@ -122,6 +129,7 @@ class PostController extends Controller
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'body' => 'required'
             ));
+        }
         // Save the data to the database
         // Find the existing item we want to update
         $post = Post::find($id);
